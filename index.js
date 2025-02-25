@@ -24,7 +24,7 @@ function isEmpty(field){
     }
     return true;
     //return true if field is null or empty string
-}//ref: https://stackoverflow.com/questions/154059/how-do-i-check-for-an-empty-undefined-null-string-in-javascript
+}
 
 function addAccount(input){
     // check if fields are complete 
