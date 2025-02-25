@@ -14,35 +14,42 @@ function generateUniqueID(firstName, lastName){
 
     // concatenating everything to form the full unique id
     uniqueID = firstN + lastN + new_uuid.substring(0,8);
-    console.log("Unique id generated!");
+    console.log("Unique id generated: " + uniqueID);
     return uniqueID;
 }
 
-function isEmpty(string){
-    if(string){
+function isEmpty(field){
+    if(field || field === null){
         return false;
     }
     return true;
-}
+    //return true if field is null or empty string
+}//ref: https://stackoverflow.com/questions/154059/how-do-i-check-for-an-empty-undefined-null-string-in-javascript
 
 function addAccount(input){
-    //checking of fields
+    // check if fields are complete 
+    if(input.length !== 4){
+        console.log("Fields are not complete");
+        return false;
+    }
+
+    // checking of fields. checks if they are not empty
     for(var i = 0;i < input.length ; i++){
         if(isEmpty(input[i])){
             switch(i){
                 case 0:
-                    console.log("First Name is missing");
+                    console.log("First name is missing");
                     break;
                 case 1:
-                    console.log("Last Name is missing");
+                    console.log("Last name is missing");
                     break;
                 case 2:
                     console.log("Email is missing");
                     break;
                 case 3:
                     console.log("Age is missing");
-                    break;
             }
+            return false;
         }
     }
 
@@ -61,3 +68,5 @@ function addAccount(input){
 
     return false;
 }
+
+export default {addAccount}
