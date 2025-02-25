@@ -20,17 +20,39 @@ function isEmpty(string){
     return true;
 }
 
-function addAccount(firstName, lastName, email, age){
-    if(
-        !isEmpty(firstName) &&
-        !isEmpty(lastName) &&
-        !isEmpty(email) &&
-        !isEmpty(age) &&
-        validator.isEmail(email) === true && 
-        age >= 18
-    ){
-        console.log("hi");
+function addAccount(input){
+    //checking of fields
+    for(var i = 0;i < input.length ; i++){
+        if(isEmpty(input[i])){
+            switch(i){
+                case 0:
+                    console.log("First Name is missing");
+                    break;
+                case 1:
+                    console.log("Last Name is missing");
+                    break;
+                case 2:
+                    console.log("Email is missing");
+                    break;
+                case 3:
+                    console.log("Age is missing");
+                    break;
+            }
+        }
+    }
+
+    //assigning fields
+    var firstName = input[0];
+    var lastName = input[1];
+    var email = input[2];
+    var age = input[3];
+
+    //checking if email is valid and age is over 18
+    if(validator.isEmail(email) === true && age >= 18){
         var userInput = firstName + "," +lastName + "," + email + "," + age + "," + generateUniqueID(firstName, lastName) +"\n";
         appendFileSync("users.txt", userInput);
+        return true;
     }
+    
+    return false;
 }
