@@ -4,10 +4,15 @@ import { appendFileSync } from 'node:fs';
 
 function generateUniqueID(firstName, lastName){
     var uniqueID = "";
+    
+    // converting input strings to proper case needed in the specs
     var firstN = (firstName.toLowerCase())[0];
     var lastN = lastName.toLowerCase();
+    
+    // creating unique id
     var new_uuid = uuidv4();
 
+    // concatenating everything to form the full unique id
     uniqueID = firstN + lastN + new_uuid.substring(0,8);
     console.log("Unique id generated!");
     return uniqueID;
@@ -53,6 +58,6 @@ function addAccount(input){
         appendFileSync("users.txt", userInput);
         return true;
     }
-    
+
     return false;
 }
